@@ -37,7 +37,6 @@ sudo git add --all
 sudo git commit -m &quot;Jenkins Config commit&quot; || true
             
 # Push changes outside of the Jenkins directory
-
 sudo git push https://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@github.com/palashrangari/jenkins-backup.git
 
         &apos;&apos;&apos;
