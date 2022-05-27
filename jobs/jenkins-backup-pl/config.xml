@@ -34,11 +34,11 @@ cd /var/lib/jenkins
 sudo git add --all
             
 # Commit, and ignore if the commit is empty
-sudo git commit -m &quot;Initial Commit&quot; || true
+sudo git commit -m &quot;Jenkins Config commit&quot; || true
             
 # Push changes outside of the Jenkins directory
 
-    sudo git push https://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@github.com/palashrangari/jenkins-backup.git
+sudo git push https://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@github.com/palashrangari/jenkins-backup.git
 
         &apos;&apos;&apos;
     }
