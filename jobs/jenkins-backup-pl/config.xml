@@ -34,7 +34,7 @@ cd /var/lib/jenkins
 sudo git add --all
             
 # Commit, and ignore if the commit is empty
-sudo git commit -m &quot;Jenkins config change&quot; || true
+sudo git commit -m &quot;Initial Commit&quot; || true
             
 #sudo git config --global user.email palash10rangari@gmail.com
 #sudo git config --global user.name palashrangari
