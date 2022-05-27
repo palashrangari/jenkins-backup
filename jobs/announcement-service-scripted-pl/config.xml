@@ -1,0 +1,39 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@1180.v04c4e75dce43">
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2689.v434009a_31b_f1">
+    <script>node {
+    stage(&apos;test1&apos;) { // for display purposes
+        // Get some code from a GitHub repository
+       checkout([$class: &apos;GitSCM&apos;, branches: [[name: &apos;*/main&apos;]], extensions: [], userRemoteConfigs: [[credentialsId: &apos;44c95966-976d-4b37-980e-92d1ba127130&apos;, url: &apos;https://github.com/palashrangari/test1.git&apos;]]])
+        
+       sh &apos;./test1.sh&apos;
+      
+        
+        withCredentials([string(credentialsId: &apos;github-secret&apos;, variable: &apos;GITHUBSECRET&apos;)]) {
+            writeFile file: &apos;env2&apos;, text: &apos;&apos;&apos;org=tec
+githubtoken=&quot;${GITHUBSECRET}&quot;
+The current working directory is: ${PWD}
+new file
+You are logged in as: $(whoami)&apos;&apos;&apos;
+        }
+        
+    }
+     stage(&apos;test2&apos;) { // for display purposes
+        // Get some code from a GitHub repository
+       checkout([$class: &apos;GitSCM&apos;, branches: [[name: &apos;*/main&apos;]], extensions: [], userRemoteConfigs: [[credentialsId: &apos;44c95966-976d-4b37-980e-92d1ba127130&apos;, url: &apos;https://github.com/palashrangari/test2.git&apos;]]])
+        
+        sh &apos;./test2.sh&apos;
+       
+    }
+   
+}
+</script>
+    <sandbox>true</sandbox>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>

@@ -1,0 +1,46 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@1182.v60a_e6279b_579">
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>1</daysToKeep>
+        <numToKeep>2</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2705.v0449852ee36f">
+    <script>node {
+    cleanWs()
+
+    stage(&apos;Preparation&apos;) { // for display purposes
+       sh &apos;&apos;&apos;
+# Move into the Jenkins master directory
+cd /var/lib/jenkins
+
+# Add all new, changed and deleted files
+# Unwanted files must be listed in .gitignore
+sudo git add --all
+            
+# Commit, and ignore if the commit is empty
+sudo git commit -m &quot;Jenkins config change&quot; || true
+            
+#sudo git config --global user.email palash10rangari@gmail.com
+#sudo git config --global user.name palashrangari
+            
+# Push changes outside of the Jenkins directory
+
+    sudo git push https://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@github.com/palashrangari/Jenkins.git
+
+        &apos;&apos;&apos;
+    }
+}</script>
+    <sandbox>true</sandbox>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>

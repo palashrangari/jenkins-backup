@@ -1,0 +1,42 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <hudson.triggers.TimerTrigger>
+      <spec>H 8 * * * </spec>
+    </hudson.triggers.TimerTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+
+# Move into the Jenkins master directory
+cd /var/lib/jenkins
+
+# Add all new, changed and deleted files
+# Unwanted files must be listed in .gitignore
+sudo git add --all
+
+# Commit, and ignore if the commit is empty
+sudo git commit -m &quot;Jenkins config change&quot; || true
+
+sudo git config --global user.email &quot;palash10rangari@gmail.com&quot;
+sudo git config --global user.name &quot;Palash&quot;
+
+# Push changes outside of the Jenkins directory
+sudo git push -u origin master</command>
+      <configuredLocalRules/>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>

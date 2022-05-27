@@ -1,0 +1,46 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@1180.v04c4e75dce43">
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2689.v434009a_31b_f1">
+    <script>node {
+    def mvnHome
+    stage(&apos;Preparation&apos;) { // for display purposes
+        // Get some code from a GitHub repository
+         git branch: &apos;main&apos;,
+            credentialsId: &apos;palash-basik-token&apos;,
+            url: &apos;https://github.com/esportsclub/infra-as-code.git&apos;
+        // Get the Maven tool.
+        // ** NOTE: This &apos;M3&apos; Maven tool must be configured
+        // **       in the global configuration.
+        mvnHome = tool &apos;M3&apos;
+        dir(&apos;ms-redis-cache&apos;) {
+            sh &apos;ls&apos;
+        }
+    }
+    
+    stage(&apos;rabbitmq-notifications&apos;) {
+        dir(&apos;rabbitmq-notifications&apos;) {
+            sh &apos;ls&apos;
+        }
+    }
+    
+    stage(&apos;Build&apos;) {
+        // Run the maven build
+       
+    }
+    stage(&apos;Results&apos;) {
+        
+    }
+    stage(&apos;cleanws&apos;) {
+        cleanWs()
+    }
+}
+</script>
+    <sandbox>true</sandbox>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>
