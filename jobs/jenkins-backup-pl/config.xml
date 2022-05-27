@@ -12,6 +12,13 @@
         <artifactNumToKeep>-1</artifactNumToKeep>
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
+    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+      <triggers>
+        <hudson.triggers.TimerTrigger>
+          <spec>H 8 * * *</spec>
+        </hudson.triggers.TimerTrigger>
+      </triggers>
+    </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2705.v0449852ee36f">
     <script>node {
@@ -34,7 +41,7 @@ sudo git commit -m &quot;Jenkins config change&quot; || true
             
 # Push changes outside of the Jenkins directory
 
-    sudo git push https://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@github.com/palashrangari/Jenkins.git
+    sudo git push https://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@https://github.com/palashrangari/jenkins-backup.git
 
         &apos;&apos;&apos;
     }
